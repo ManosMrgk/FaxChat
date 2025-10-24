@@ -1,0 +1,20 @@
+---
+    services:
+      api:
+        image: tiangolo/uvicorn-gunicorn-fastapi
+        container_name: api
+        environment:
+         - TZ=Etc/UTC
+        volumes:
+         - ./app:/app
+        ports:
+         - 5000:80
+        restart: unless-stopped
+        command: /bin/sh -c "pip install --upgrade -r requirements.txt && uvicorn api:app --host 0.0.0.0 --port 80"
+        command: uvicorn api:app --host 0.0.0.0 --port 80
+      redis:
+       image: redis:alpine
+       container_name: redis
+       restart: unless-stopped
+       ports:
+         - 6379:6379

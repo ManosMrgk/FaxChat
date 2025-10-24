@@ -1,0 +1,5 @@
+fastapi
+slowapi
+pydantic
+redis
+uvicorn[standard]
